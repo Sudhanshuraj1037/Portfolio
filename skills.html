@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Bar</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: "Ubuntu", sans-serif;
+            box-sizing: border-box;
+        }
+        body{
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111;
+            
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: black;
+}
+        
+        header{
+    margin-top: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 9%;
+    background-color: transparent;
+    filter: drop-shadow(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo{
+    font-size: 3rem;
+    color: #b74b4b;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.5s ease;
+    text-decoration: none;
+}
+
+.logo:hover{
+    transform: scale(1.1);
+    text-decoration: none;
+}
+
+nav a{
+    font-size: 1.8rem;
+    color: white;
+    margin-left: 4rem;
+    font-weight: 500;
+    transition: 0.3s ease;
+    border-bottom: 3px solid transparent;
+    text-decoration: none;
+}
+
+nav a:hover,
+nav a.activeskills{
+    color: #b74b4b;
+    border-bottom: 3px solid #b74b4b;
+    text-decoration: none;
+}
+
+    .skills{
+        width: 100%;
+        max-width: 600px;
+        padding: 0 20px;
+    }
+    .skill-name{
+        font-size: 18px;
+        font-weight:700;
+        color: #f1f1f1;
+        text-transform: uppercase;
+        margin: 20px 0;
+    }
+    .skill-bar{
+        height: 14px;
+        background: #282828;
+        border-radius: 3px;
+    }
+    .skill-per{
+        height:14px;
+        background: #d13639;
+        border-radius: 3px;
+        position: relative;
+        animation: fillBars 2.5s 1;
+    }
+    .skill-per::before{
+        content: attr(per);
+        position: absolute;
+        padding: 4px 6px;
+        background: #f1f1f1;
+        border-radius: 4px;
+        font-size: 12px;
+        top: -35px;
+        right:0;
+        transform: translateX(50%);
+    }
+    .skill-per::after{
+        content: "";
+        position: absolute;
+        width:10px;
+        height: 10px;
+        background: #f1f1f1;
+        top:-20px;
+        right: 0;
+        transform: translateX(50%) rotate(45deg);
+        border-radius: 2px;
+    }
+    @keyframes fillBars{
+        from{
+            width: 0;
+        }
+        to{
+            width:100%;
+        }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Sudhanshu</a>
+
+        <nav>
+            <a href="index.html" class="active"> Home</a>
+            <!-- <a href="#" >Services</a> -->
+            <a href="skills.html" class="activeskills" >Skills</a>
+            <!-- <a href="#" >Education</a> -->
+            <!-- <a href="#" >Experience</a> -->
+            <a href="contact.html" >Contact</a>
+        </nav>
+    </header>
+    <div class="skills">
+        <div class="skill">
+            <div class="skill-name">HTML</div>
+            <div class="skill-bar">
+                <div class="skill-per" per="90%" style="max-width: 90%"></div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-name">CSS</div>
+            <div class="skill-bar">
+                <div class="skill-per" per="75%" style="max-width: 80%"></div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-name">JavaScript</div>
+            <div class="skill-bar">
+                <div class="skill-per" per="35%" style="max-width: 30%"></div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-name">Python</div>
+            <div class="skill-bar">
+                <div class="skill-per" per="50%" style="max-width: 50%"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
