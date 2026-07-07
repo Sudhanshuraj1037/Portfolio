@@ -1,54 +1,63 @@
 import { motion } from "framer-motion";
-import { useReasoningTrace } from "@/hooks/useReasoningTrace";
+import { NeuralNetworkBackground } from "@/components/three/NeuralNetworkCanvas";
 
-const TRACE_LINES = [
-  "> parsing constraints: latency, cost, correctness",
-  "> checking failure modes before optimizing the happy path",
-  "> shipping the version a user can actually rely on",
+const ROLE_TAGS = [
+  "AI Systems Engineer",
+  "Machine Learning",
+  "Computer Vision",
+  "Generative AI",
+  "Full-Stack",
 ];
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Hero() {
-  const { displayedLines, done } = useReasoningTrace(TRACE_LINES);
-
   return (
     <section
       id="top"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden"
     >
-      {/* Ambient signal — extremely subtle, a single soft glow, not a gradient mesh */}
+      {/* Base ambient layer — present even under prefers-reduced-motion,
+          when the neural network canvas above it doesn't mount. */}
       <div
         aria-hidden
         className="pointer-events-none absolute -top-40 right-[-10%] h-[560px] w-[560px] rounded-full blur-[140px]"
         style={{ backgroundColor: "var(--color-signal-dim)" }}
       />
 
+      {/* Signature element: R3F neural network, masked so it stays quiet
+          behind the headline and fades out toward the edges. */}
+      <NeuralNetworkBackground />
+
       <div className="container-page relative z-10 pt-24">
-        {/* Signature element: the reasoning trace */}
-        <div
-          className="mb-8 h-[92px] font-mono text-sm leading-relaxed text-[color:var(--color-signal-text)] sm:h-[72px]"
-          aria-hidden="true"
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-xs text-[color:var(--color-text-secondary)]"
         >
-          {displayedLines.map((line, i) => (
-            <div key={i} className="whitespace-pre">
-              {line}
-              {i === displayedLines.length - 1 && !done && (
-                <span className="ml-0.5 inline-block h-[1em] w-[7px] translate-y-[1px] animate-pulse bg-[color:var(--color-signal)]" />
+          {ROLE_TAGS.map((tag, i) => (
+            <span key={tag} className="flex items-center gap-3">
+              {i === 0 ? (
+                <span className="text-[color:var(--color-signal-text)]">
+                  {tag}
+                </span>
+              ) : (
+                tag
               )}
-            </div>
+              {i < ROLE_TAGS.length - 1 && (
+                <span className="text-[color:var(--color-border-strong)]">
+                  /
+                </span>
+              )}
+            </span>
           ))}
-        </div>
-        {/* Screen-reader equivalent, since the trace above is decorative/animated */}
-        <p className="sr-only">
-          An AI engineer focused on shipping reliable, production-grade
-          systems.
-        </p>
+        </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
+          transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
           className="max-w-3xl text-4xl font-semibold tracking-tight text-[color:var(--color-text-primary)] sm:text-5xl lg:text-[color:var(--text-5xl)] lg:leading-[1.05]"
         >
           I build AI systems that hold up{" "}
@@ -60,7 +69,7 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE, delay: 0.3 }}
+          transition={{ duration: 0.7, ease: EASE, delay: 0.25 }}
           className="mt-6 max-w-xl text-lg text-[color:var(--color-text-secondary)]"
         >
           Computer Science engineer specializing in applied ML — from
@@ -71,7 +80,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE, delay: 0.45 }}
+          transition={{ duration: 0.7, ease: EASE, delay: 0.4 }}
           className="mt-10 flex flex-wrap items-center gap-4"
         >
           <a
