@@ -56,3 +56,17 @@ Proof over claims.
   TODO) — needs a real address before deploy. GitHub link is real and live.
 - Architecture diagrams (Blind Assistant) are hand-built SVG grounded in
   the actual repo (github.com/Sudhanshuraj1037/Blind-AI), not invented.
+- Loading screen: first-visit only (sessionStorage-gated), ~1.2s of
+  staged text + progress bar, skipped entirely under reduced-motion.
+  Main content doesn't mount until the gate opens, so entrance
+  animations play after the curtain lifts, not hidden behind it.
+- Hero headline: "Engineering AI that solves real problems." — chosen
+  specifically to avoid generic AI-startup copy ("Building Intelligent
+  Systems for Real-World Impact" was considered and rejected).
+- Resume button in Navbar is intentionally disabled (no fake link, no
+  fake PDF) until a real resume is supplied — production-ready, not
+  broken.
+- Animation library split: Framer Motion owns all entrance/reveal
+  animation (already in use everywhere). GSAP is deferred until a
+  section genuinely needs scroll-pinning/scrubbing (ScrollTrigger) —
+  not introduced just to duplicate what Framer Motion already does.

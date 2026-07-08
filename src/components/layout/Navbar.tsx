@@ -52,12 +52,25 @@ export function Navbar() {
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className="hidden md:inline-flex items-center rounded-[var(--radius-sm)] border border-[color:var(--color-border-strong)] px-4 py-2 text-sm text-[color:var(--color-text-primary)] hover:border-[color:var(--color-signal)] hover:bg-[color:var(--color-signal-dim)] transition-all duration-200"
-        >
-          Get in touch
-        </a>
+        <div className="hidden md:flex items-center gap-3">
+          {/* Disabled on purpose — no resume PDF yet. Real link goes here later;
+              this stays a non-interactive button, never a broken href. */}
+          <button
+            type="button"
+            disabled
+            aria-disabled="true"
+            title="Resume coming soon"
+            className="inline-flex cursor-not-allowed items-center rounded-[var(--radius-sm)] border border-[color:var(--color-border)] px-4 py-2 text-sm text-[color:var(--color-text-tertiary)] opacity-60"
+          >
+            Resume
+          </button>
+          <a
+            href="#contact"
+            className="inline-flex items-center rounded-[var(--radius-sm)] border border-[color:var(--color-border-strong)] px-4 py-2 text-sm text-[color:var(--color-text-primary)] hover:border-[color:var(--color-signal)] hover:bg-[color:var(--color-signal-dim)] transition-all duration-200"
+          >
+            Get in touch
+          </a>
+        </div>
 
         {/* Mobile: kept minimal on purpose — a single link, no hamburger menu drawer yet (Sprint 2) */}
         <a

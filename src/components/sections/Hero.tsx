@@ -60,9 +60,9 @@ export function Hero() {
           transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
           className="max-w-3xl text-4xl font-semibold tracking-tight text-[color:var(--color-text-primary)] sm:text-5xl lg:text-[color:var(--text-5xl)] lg:leading-[1.05]"
         >
-          I build AI systems that hold up{" "}
+          Engineering AI{" "}
           <span className="text-[color:var(--color-text-secondary)]">
-            outside the demo.
+            that solves real problems.
           </span>
         </motion.h1>
 
