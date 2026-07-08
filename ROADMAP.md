@@ -8,11 +8,12 @@ The narrative a recruiter needs in their first 90 seconds.
 - [x] Foundation: folder structure, design tokens, Tailwind v4 setup
 - [x] Navbar
 - [x] Hero — R3F neural network background (signature element)
-- [ ] Featured Project (case study format: Problem → Architecture → Stack → Roadmap)
-- [ ] About / Engineering journey
-- [ ] Projects grid (case-study cards, not screenshots)
-- [ ] Skills (dependency graph, not progress bars)
-- [ ] Contact
+- [x] Featured Project (case study format: Problem → Architecture → Stack → Roadmap) — Blind Assistant
+- [x] About / Engineering journey
+- [x] Projects grid (case-study cards, not screenshots) — ExamPrep AI, SaaS dashboard clone
+- [x] Skills (dependency-aware grouping, not progress bars) — v1: categorized clusters; literal
+      force-directed graph deferred to Milestone 2 per "Skills visualization refinement"
+- [x] Contact — GitHub link is live; email is a marked placeholder (see Contact.tsx TODO)
 - [ ] Responsive pass + deploy to Vercel
 
 ## Milestone 2 — Engineering Content
@@ -51,3 +52,7 @@ Proof over claims.
   Boldness spent in one place per section, not scattered.
 - No inflated skill percentages, no cloned templates — borrow techniques,
   not whole designs.
+- Contact section ships with a placeholder email (`Contact.tsx`, marked
+  TODO) — needs a real address before deploy. GitHub link is real and live.
+- Architecture diagrams (Blind Assistant) are hand-built SVG grounded in
+  the actual repo (github.com/Sudhanshuraj1037/Blind-AI), not invented.
