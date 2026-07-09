@@ -1,10 +1,12 @@
 import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import { LoadingScreen } from "@/components/layout/LoadingScreen";
 import { Hero } from "@/components/sections/Hero";
+import { WhatIBuild } from "@/components/sections/WhatIBuild";
 import { FeaturedProject } from "@/components/sections/FeaturedProject";
 import { About } from "@/components/sections/About";
-import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
+import { Skills } from "@/components/sections/Skills";
 import { Contact } from "@/components/sections/Contact";
 import { useLoadingGate } from "@/hooks/useLoadingGate";
 
@@ -19,12 +21,14 @@ function App() {
           <Navbar />
           <main>
             <Hero />
+            <WhatIBuild />
             <FeaturedProject />
             <About />
-            <Skills />
             <Projects />
+            <Skills />
             <Contact />
           </main>
+          <Footer />
         </div>
       )}
     </>

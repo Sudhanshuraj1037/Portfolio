@@ -7,13 +7,22 @@ demo-able state — no half-wired features between checkpoints.
 The narrative a recruiter needs in their first 90 seconds.
 - [x] Foundation: folder structure, design tokens, Tailwind v4 setup
 - [x] Navbar
-- [x] Hero — R3F neural network background (signature element)
-- [x] Featured Project (case study format: Problem → Architecture → Stack → Roadmap) — Blind Assistant
+- [x] Hero — R3F neural network background (signature element), mission →
+      person → skills ordering, fades out on scroll past hero
+- [x] What I Build — 3 specialization pillars (CV / AI & LLM / Full-Stack),
+      positioned right after Hero
+- [x] Flagship AI System (renamed from "Featured Project") — Blind
+      Assistant case study: Problem → Architecture (animated SVG data-flow,
+      SMIL-based, zero JS cost) → Fusion Engine → Deployment → Tech Stack →
+      Challenges → What's Next
 - [x] About / Engineering journey
-- [x] Projects grid (case-study cards, not screenshots) — ExamPrep AI, SaaS dashboard clone
-- [x] Skills (dependency-aware grouping, not progress bars) — v1: categorized clusters; literal
-      force-directed graph deferred to Milestone 2 per "Skills visualization refinement"
-- [x] Contact — GitHub link is live; email is a marked placeholder (see Contact.tsx TODO)
+- [x] Projects grid (case-study cards, not screenshots) — ExamPrep AI,
+      SaaS dashboard clone. NOT upgraded to full video/demo showcase —
+      blocked on real demo video / live deployment URLs, ask before building
+- [x] Skills (categorized clusters, not progress bars)
+- [x] Contact — GitHub link is live; email is a marked placeholder
+- [x] Footer — honest "built with" list (no unused libraries claimed),
+      real GitHub link, build version/date injected at build time
 - [ ] Responsive pass + deploy to Vercel
 
 ## Milestone 2 — Engineering Content
@@ -70,3 +79,13 @@ Proof over claims.
   animation (already in use everywhere). GSAP is deferred until a
   section genuinely needs scroll-pinning/scrubbing (ScrollTrigger) —
   not introduced just to duplicate what Framer Motion already does.
+- Neural network does NOT become a page-spanning scroll-morphing
+  background (considered and scoped down) — conflicts with the agreed
+  "10% animation budget." It fades out on scroll past the hero instead;
+  visual continuity comes from reusing the signal-color node/line motif
+  in About's timeline and the architecture diagram, not a shared canvas.
+- Projects grid stays at case-study-card level, not full video/demo
+  showcase pages, until real demo videos / live deployment URLs exist —
+  same no-fake-placeholder principle as the Resume button.
+- Page order (locked): Hero → What I Build → Flagship AI System → About
+  → Projects → Skills → Contact → Footer.

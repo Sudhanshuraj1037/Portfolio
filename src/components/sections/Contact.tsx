@@ -40,13 +40,6 @@ export function Contact() {
             </a>
           </div>
         </FadeIn>
-
-        <FadeIn delay={0.15}>
-          <div className="mt-24 flex flex-col gap-2 border-t border-[color:var(--color-border)] pt-8 text-xs text-[color:var(--color-text-tertiary)] sm:flex-row sm:items-center sm:justify-between">
-            <span>© {new Date().getFullYear()} Sudhanshu Raj.</span>
-            <span className="font-mono">Built with React, Tailwind &amp; R3F.</span>
-          </div>
-        </FadeIn>
       </div>
     </section>
   );

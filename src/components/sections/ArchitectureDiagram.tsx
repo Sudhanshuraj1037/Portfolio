@@ -1,3 +1,5 @@
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+
 const SIGNAL = "var(--color-signal)";
 const BORDER = "var(--color-border-strong)";
 const TEXT_PRIMARY = "var(--color-text-primary)";
@@ -67,6 +69,41 @@ function Arrow({ from, to }: { from: [number, number]; to: [number, number] }) {
   );
 }
 
+// Data-flow pulses along each connection — native SVG SMIL animation,
+// so this costs zero JS and zero bundle weight. Fades in, travels,
+// fades out, loops — no abrupt jump-cut at restart.
+function Pulse({
+  from,
+  to,
+  duration,
+  delay = 0,
+}: {
+  from: [number, number];
+  to: [number, number];
+  duration: number;
+  delay?: number;
+}) {
+  const pathD = `M${from[0]},${from[1]} L${to[0]},${to[1]}`;
+  return (
+    <circle r={3} fill={SIGNAL}>
+      <animateMotion
+        path={pathD}
+        dur={`${duration}s`}
+        begin={`${delay}s`}
+        repeatCount="indefinite"
+      />
+      <animate
+        attributeName="opacity"
+        values="0;0.9;0.9;0"
+        keyTimes="0;0.12;0.85;1"
+        dur={`${duration}s`}
+        begin={`${delay}s`}
+        repeatCount="indefinite"
+      />
+    </circle>
+  );
+}
+
 const PERCEPTION_MODULES = [
   ["Object Detection", "YOLOv8n"],
   ["Depth Estimation", "Depth Anything V2"],
@@ -77,7 +114,26 @@ const PERCEPTION_MODULES = [
   ["Traffic Light", "color detection"],
 ];
 
+type Connection = {
+  from: [number, number];
+  to: [number, number];
+  duration: number;
+  delay: number;
+};
+
+const CONNECTIONS: Connection[] = [
+  { from: [200, 97], to: [258, 97], duration: 2.2, delay: 0 },
+  { from: [200, 307], to: [258, 307], duration: 2.4, delay: 0.6 },
+  { from: [562, 135], to: [638, 135], duration: 2.0, delay: 0.3 },
+  { from: [562, 300], to: [638, 150], duration: 2.6, delay: 1.1 },
+  { from: [562, 320], to: [638, 250], duration: 2.3, delay: 1.6 },
+  { from: [700, 175], to: [700, 338], duration: 2.1, delay: 0.9 },
+  { from: [800, 269], to: [800, 338], duration: 1.8, delay: 1.9 },
+];
+
 export function ArchitectureDiagram() {
+  const reducedMotion = usePrefersReducedMotion();
+
   return (
     <svg
       viewBox="0 0 900 500"
@@ -181,14 +237,20 @@ export function ArchitectureDiagram() {
         subtitle="spoken audio output"
       />
 
-      {/* Arrows */}
-      <Arrow from={[200, 97]} to={[258, 97]} />
-      <Arrow from={[200, 307]} to={[258, 307]} />
-      <Arrow from={[562, 135]} to={[638, 135]} />
-      <Arrow from={[562, 300]} to={[638, 150]} />
-      <Arrow from={[562, 320]} to={[638, 250]} />
-      <Arrow from={[700, 175]} to={[700, 338]} />
-      <Arrow from={[800, 269]} to={[800, 338]} />
+      {/* Arrows + data-flow pulses, driven from the same coordinates */}
+      {CONNECTIONS.map((conn, i) => (
+        <g key={i}>
+          <Arrow from={conn.from} to={conn.to} />
+          {!reducedMotion && (
+            <Pulse
+              from={conn.from}
+              to={conn.to}
+              duration={conn.duration}
+              delay={conn.delay}
+            />
+          )}
+        </g>
+      ))}
     </svg>
   );
 }
