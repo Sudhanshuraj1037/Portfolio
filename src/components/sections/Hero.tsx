@@ -45,7 +45,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="max-w-3xl text-4xl font-semibold tracking-tight text-[color:var(--color-text-primary)] sm:text-5xl lg:text-[color:var(--text-5xl)] lg:leading-[1.05]"
+          className="max-w-3xl text-3xl font-semibold tracking-tight text-[color:var(--color-text-primary)] sm:text-4xl lg:text-5xl lg:leading-[1.05]"
         >
           Engineering AI{" "}
           <span className="text-[color:var(--color-text-secondary)]">
