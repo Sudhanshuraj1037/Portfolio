@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { NAV_LINKS } from "@/lib/navigation";
+import { NAV_LINKS, SECTION_IDS } from "@/lib/navigation";
+import { useActiveSection } from "@/hooks/useActiveSection";
 import { MobileNav } from "./MobileNav";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuTriggerRef = useRef<HTMLButtonElement>(null);
+  const activeId = useActiveSection(SECTION_IDS);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -37,16 +39,33 @@ export function Navbar() {
         </a>
 
         <ul className="hidden md:flex items-center gap-6">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-text-primary)] transition-colors"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = activeId === link.href.slice(1);
+            return (
+              <li key={link.href} className="relative">
+                <a
+                  href={link.href}
+                  aria-current={isActive ? "true" : undefined}
+                  className={cn(
+                    "text-sm transition-colors",
+                    isActive
+                      ? "text-[color:var(--color-text-primary)]"
+                      : "text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-text-primary)]"
+                  )}
+                >
+                  {link.label}
+                </a>
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-active-indicator"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full"
+                    style={{ backgroundColor: "var(--color-signal)" }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  />
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
