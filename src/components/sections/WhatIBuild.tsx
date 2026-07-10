@@ -28,7 +28,7 @@ const PILLARS = [
 
 export function WhatIBuild() {
   return (
-    <section className="py-[var(--spacing-section-sm)] md:py-[var(--spacing-section)]">
+    <section id="build" className="py-[var(--spacing-section-sm)] md:py-[var(--spacing-section)]">
       <div className="container-page">
         <FadeIn>
           <p className="font-mono text-xs tracking-wide text-[color:var(--color-signal-text)]">

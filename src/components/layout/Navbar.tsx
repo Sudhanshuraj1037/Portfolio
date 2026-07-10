@@ -1,16 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-
-const NAV_LINKS = [
-  { label: "Work", href: "#work" },
-  { label: "Systems", href: "#systems" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-];
+import { NAV_LINKS } from "@/lib/navigation";
+import { MobileNav } from "./MobileNav";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -39,7 +36,7 @@ export function Navbar() {
           sudhanshu<span className="text-[color:var(--color-signal)]">.</span>ai
         </a>
 
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-6">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <a
@@ -72,14 +69,27 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* Mobile: kept minimal on purpose — a single link, no hamburger menu drawer yet (Sprint 2) */}
-        <a
-          href="#contact"
-          className="md:hidden text-sm text-[color:var(--color-signal-text)]"
+        {/* Mobile: text-based toggle, not a hamburger-to-X icon morph —
+            consistent with the mono/technical labels used throughout. */}
+        <button
+          ref={menuTriggerRef}
+          type="button"
+          onClick={() => setMobileOpen(true)}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-nav"
+          className="font-mono text-sm text-[color:var(--color-signal-text)] md:hidden"
         >
-          Contact
-        </a>
+          Menu
+        </button>
       </nav>
+
+      <div id="mobile-nav">
+        <MobileNav
+          open={mobileOpen}
+          onClose={() => setMobileOpen(false)}
+          triggerRef={menuTriggerRef}
+        />
+      </div>
     </motion.header>
   );
 }

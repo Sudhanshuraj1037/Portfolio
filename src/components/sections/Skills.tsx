@@ -54,7 +54,7 @@ const GROUPS: SkillGroup[] = [
 export function Skills() {
   return (
     <section
-      id="systems"
+      id="skills"
       className="py-[var(--spacing-section-sm)] md:py-[var(--spacing-section)]"
     >
       <div className="container-page">

@@ -8,6 +8,10 @@
 
   html {
     scroll-behavior: smooth;
+    /* Navbar is fixed at h-16 (64px). Without this, every anchor jump
+       scrolls the target flush to the viewport top, tucking its first
+       ~64px (usually the eyebrow label) under the navbar. */
+    scroll-padding-top: 6rem;
   }
 
   body {
