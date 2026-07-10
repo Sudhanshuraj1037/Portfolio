@@ -1,4 +1,7 @@
-import { ArchitectureDiagram } from "./ArchitectureDiagram";
+import { useRef, useState } from "react";
+import { ArchitectureDiagram } from "./architecture/ArchitectureDiagram";
+import { MobileArchitectureDiagram } from "./architecture/MobileArchitectureDiagram";
+import { ArchitectureFullscreenModal } from "./architecture/ArchitectureFullscreenModal";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 const TECH_STACK = [
@@ -24,6 +27,9 @@ const SCHEDULE = [
 ];
 
 export function FeaturedProject() {
+  const [diagramExpanded, setDiagramExpanded] = useState(false);
+  const expandTriggerRef = useRef<HTMLButtonElement>(null);
+
   return (
     <section id="work" className="py-[var(--spacing-section-sm)] md:py-[var(--spacing-section)]">
       <div className="container-page">
@@ -78,10 +84,35 @@ export function FeaturedProject() {
               SYSTEM ARCHITECTURE
             </h3>
             <div className="mt-5 rounded-[var(--radius-lg)] border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-4 sm:p-6">
-              <ArchitectureDiagram />
+              {/* Mobile: simplified portrait diagram, built at native scale
+                  — not the desktop diagram shrunk down (that was illegible,
+                  see Milestone 2 review). Expand button opens the real
+                  diagram fullscreen, at its natural legible size. */}
+              <div className="md:hidden">
+                <MobileArchitectureDiagram />
+                <button
+                  ref={expandTriggerRef}
+                  type="button"
+                  onClick={() => setDiagramExpanded(true)}
+                  className="mt-4 inline-flex items-center gap-1.5 rounded-[var(--radius-sm)] border border-[color:var(--color-border-strong)] px-4 py-2 text-sm text-[color:var(--color-text-primary)] transition-colors hover:border-[color:var(--color-signal)]"
+                >
+                  View full architecture →
+                </button>
+              </div>
+
+              {/* Desktop: unchanged from the version already reviewed. */}
+              <div className="hidden md:block">
+                <ArchitectureDiagram />
+              </div>
             </div>
           </div>
         </FadeIn>
+
+        <ArchitectureFullscreenModal
+          open={diagramExpanded}
+          onClose={() => setDiagramExpanded(false)}
+          triggerRef={expandTriggerRef}
+        />
 
         {/* The fusion engine / scheduling table — the actual engineering decision */}
         <FadeIn delay={0.1}>

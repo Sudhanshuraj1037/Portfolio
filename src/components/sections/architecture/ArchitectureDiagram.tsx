@@ -1,108 +1,12 @@
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
-
-const SIGNAL = "var(--color-signal)";
-const BORDER = "var(--color-border-strong)";
-const TEXT_PRIMARY = "var(--color-text-primary)";
-const TEXT_SECONDARY = "var(--color-text-secondary)";
-const SURFACE = "var(--color-surface)";
-
-type NodeProps = {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  title: string;
-  subtitle?: string;
-  highlight?: boolean;
-};
-
-function Node({ x, y, w, h, title, subtitle, highlight }: NodeProps) {
-  return (
-    <g>
-      <rect
-        x={x}
-        y={y}
-        width={w}
-        height={h}
-        rx={10}
-        fill={SURFACE}
-        stroke={highlight ? SIGNAL : BORDER}
-        strokeWidth={highlight ? 1.5 : 1}
-      />
-      <text
-        x={x + w / 2}
-        y={subtitle ? y + h / 2 - 4 : y + h / 2 + 4}
-        textAnchor="middle"
-        fontFamily="var(--font-mono)"
-        fontSize="13"
-        fill={highlight ? SIGNAL : TEXT_PRIMARY}
-      >
-        {title}
-      </text>
-      {subtitle && (
-        <text
-          x={x + w / 2}
-          y={y + h / 2 + 14}
-          textAnchor="middle"
-          fontFamily="var(--font-mono)"
-          fontSize="10.5"
-          fill={TEXT_SECONDARY}
-        >
-          {subtitle}
-        </text>
-      )}
-    </g>
-  );
-}
-
-function Arrow({ from, to }: { from: [number, number]; to: [number, number] }) {
-  return (
-    <line
-      x1={from[0]}
-      y1={from[1]}
-      x2={to[0]}
-      y2={to[1]}
-      stroke={BORDER}
-      strokeWidth={1.25}
-      markerEnd="url(#arrowhead)"
-    />
-  );
-}
-
-// Data-flow pulses along each connection — native SVG SMIL animation,
-// so this costs zero JS and zero bundle weight. Fades in, travels,
-// fades out, loops — no abrupt jump-cut at restart.
-function Pulse({
-  from,
-  to,
-  duration,
-  delay = 0,
-}: {
-  from: [number, number];
-  to: [number, number];
-  duration: number;
-  delay?: number;
-}) {
-  const pathD = `M${from[0]},${from[1]} L${to[0]},${to[1]}`;
-  return (
-    <circle r={3} fill={SIGNAL}>
-      <animateMotion
-        path={pathD}
-        dur={`${duration}s`}
-        begin={`${delay}s`}
-        repeatCount="indefinite"
-      />
-      <animate
-        attributeName="opacity"
-        values="0;0.9;0.9;0"
-        keyTimes="0;0.12;0.85;1"
-        dur={`${duration}s`}
-        begin={`${delay}s`}
-        repeatCount="indefinite"
-      />
-    </circle>
-  );
-}
+import {
+  Node,
+  ArrowheadMarker,
+  ConnectionGroup,
+  TEXT_SECONDARY,
+  BORDER,
+  type Connection,
+} from "./primitives";
 
 const PERCEPTION_MODULES = [
   ["Object Detection", "YOLOv8n"],
@@ -113,13 +17,6 @@ const PERCEPTION_MODULES = [
   ["Currency", "custom-trained YOLO"],
   ["Traffic Light", "color detection"],
 ];
-
-type Connection = {
-  from: [number, number];
-  to: [number, number];
-  duration: number;
-  delay: number;
-};
 
 const CONNECTIONS: Connection[] = [
   { from: [200, 97], to: [258, 97], duration: 2.2, delay: 0 },
@@ -143,16 +40,7 @@ export function ArchitectureDiagram() {
       aria-label="System architecture: camera feed and microphone inputs flow through seven perception modules and a voice command parser into a fusion engine and Groq vision-language model, which output through text-to-speech."
     >
       <defs>
-        <marker
-          id="arrowhead"
-          markerWidth="8"
-          markerHeight="8"
-          refX="7"
-          refY="4"
-          orient="auto"
-        >
-          <path d="M0,0 L8,4 L0,8 Z" fill={BORDER} />
-        </marker>
+        <ArrowheadMarker />
       </defs>
 
       {/* Inputs */}
@@ -239,17 +127,7 @@ export function ArchitectureDiagram() {
 
       {/* Arrows + data-flow pulses, driven from the same coordinates */}
       {CONNECTIONS.map((conn, i) => (
-        <g key={i}>
-          <Arrow from={conn.from} to={conn.to} />
-          {!reducedMotion && (
-            <Pulse
-              from={conn.from}
-              to={conn.to}
-              duration={conn.duration}
-              delay={conn.delay}
-            />
-          )}
-        </g>
+        <ConnectionGroup key={i} connection={conn} reducedMotion={reducedMotion} />
       ))}
     </svg>
   );
