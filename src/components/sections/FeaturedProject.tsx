@@ -133,6 +133,10 @@ export function FeaturedProject() {
             <div className="overflow-hidden rounded-[var(--radius-md)] border border-[color:var(--color-border)]">
               <table className="w-full text-sm">
                 <caption className="sr-only">
+                  Announcement priority schedule: signal type, re-announcement
+                  interval, and priority level for the fusion engine
+                </caption>
+                <caption className="sr-only">
                   Fusion engine announcement schedule: signal type, re-announcement interval, and priority
                 </caption>
                 <thead>
