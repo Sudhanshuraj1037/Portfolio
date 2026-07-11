@@ -78,7 +78,7 @@ export function MobileNav({
           <button
             type="button"
             onClick={onClose}
-            className="absolute right-6 top-6 font-mono text-sm text-[color:var(--color-signal-text)]"
+            className="absolute right-3 top-3 p-3 font-mono text-sm text-[color:var(--color-signal-text)]"
           >
             Close
           </button>
@@ -101,7 +101,10 @@ export function MobileNav({
                     onClick={onClose}
                     className="flex items-baseline gap-4 py-2 text-3xl font-semibold tracking-tight text-[color:var(--color-text-primary)] transition-colors hover:text-[color:var(--color-signal-text)]"
                   >
-                    <span className="font-mono text-xs font-normal text-[color:var(--color-text-tertiary)]">
+                    <span
+                      aria-hidden="true"
+                      className="font-mono text-xs font-normal text-[color:var(--color-text-secondary)]"
+                    >
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     {link.label}
@@ -112,7 +115,7 @@ export function MobileNav({
           </nav>
 
           <div className="flex items-center justify-between border-t border-[color:var(--color-border)] pt-6">
-            <span className="font-mono text-xs text-[color:var(--color-text-tertiary)]">
+            <span className="font-mono text-xs text-[color:var(--color-text-secondary)]">
               Resume — coming soon
             </span>
             <a

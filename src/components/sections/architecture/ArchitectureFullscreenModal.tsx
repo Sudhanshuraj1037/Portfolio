@@ -72,13 +72,13 @@ export function ArchitectureFullscreenModal({
           style={{ backgroundColor: "var(--color-bg)" }}
         >
           <div className="flex items-center justify-between px-6 pt-6">
-            <p className="font-mono text-xs text-[color:var(--color-text-tertiary)]">
+            <p className="font-mono text-xs text-[color:var(--color-text-secondary)]">
               ← scroll to explore →
             </p>
             <button
               type="button"
               onClick={onClose}
-              className="font-mono text-sm text-[color:var(--color-signal-text)]"
+              className="-m-3 p-3 font-mono text-sm text-[color:var(--color-signal-text)]"
             >
               Close
             </button>

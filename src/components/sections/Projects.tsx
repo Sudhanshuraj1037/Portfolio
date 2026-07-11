@@ -51,7 +51,7 @@ export function Projects() {
                   {project.stack.map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-full border border-[color:var(--color-border-strong)] px-2.5 py-0.5 font-mono text-[11px] text-[color:var(--color-text-tertiary)]"
+                      className="rounded-full border border-[color:var(--color-border-strong)] px-2.5 py-0.5 font-mono text-[11px] text-[color:var(--color-text-secondary)]"
                     >
                       {tech}
                     </span>

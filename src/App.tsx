@@ -18,8 +18,14 @@ function App() {
       {showLoader && <LoadingScreen onComplete={markDone} />}
       {ready && (
         <div className="min-h-screen bg-[color:var(--color-bg)]">
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[var(--radius-sm)] focus:border focus:border-[color:var(--color-border-strong)] focus:bg-[color:var(--color-surface)] focus:px-4 focus:py-2 focus:text-sm focus:text-[color:var(--color-text-primary)]"
+          >
+            Skip to content
+          </a>
           <Navbar />
-          <main>
+          <main id="main-content" tabIndex={-1}>
             <Hero />
             <WhatIBuild />
             <FeaturedProject />

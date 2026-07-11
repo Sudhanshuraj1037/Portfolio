@@ -80,7 +80,7 @@ export function Skills() {
                     {group.category}
                   </h3>
                 </div>
-                <p className="mt-1 font-mono text-xs text-[color:var(--color-text-tertiary)]">
+                <p className="mt-1 font-mono text-xs text-[color:var(--color-text-secondary)]">
                   {group.note}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">

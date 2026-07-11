@@ -62,7 +62,7 @@ export function WhatIBuild() {
                     </span>
                   ))}
                 </div>
-                <p className="mt-5 font-mono text-xs text-[color:var(--color-text-tertiary)]">
+                <p className="mt-5 font-mono text-xs text-[color:var(--color-text-secondary)]">
                   Proven in {pillar.project}
                 </p>
               </div>

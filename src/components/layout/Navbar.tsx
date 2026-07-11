@@ -96,7 +96,7 @@ export function Navbar() {
           onClick={() => setMobileOpen(true)}
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav"
-          className="font-mono text-sm text-[color:var(--color-signal-text)] md:hidden"
+          className="-m-3 p-3 font-mono text-sm text-[color:var(--color-signal-text)] md:hidden"
         >
           Menu
         </button>

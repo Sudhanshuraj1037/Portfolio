@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="border-t border-[color:var(--color-border)] py-10">
       <div className="container-page flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="font-mono text-xs text-[color:var(--color-text-tertiary)]">
+          <p className="font-mono text-xs text-[color:var(--color-text-secondary)]">
             Built with
           </p>
           <div className="mt-2 flex flex-wrap gap-2">
@@ -30,7 +30,7 @@ export function Footer() {
           >
             GitHub →
           </a>
-          <p className="font-mono text-[11px] text-[color:var(--color-text-tertiary)]">
+          <p className="font-mono text-[11px] text-[color:var(--color-text-secondary)]">
             v{__APP_VERSION__} · built {__BUILD_DATE__}
           </p>
         </div>
