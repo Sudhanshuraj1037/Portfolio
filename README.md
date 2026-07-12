@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 Sudhanshu Labs
+# 🚀 Sudhanshu Lab
 
 ### Building Intelligent Systems for Real-World Impact
 
