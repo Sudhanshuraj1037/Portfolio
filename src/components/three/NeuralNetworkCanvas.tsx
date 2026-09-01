@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { usePointerRef } from "@/hooks/usePointerRef";
+import { CanvasErrorBoundary } from "./CanvasErrorBoundary";
 
 // Lazy boundary drawn here — before any @react-three/fiber or three import,
 // so the ~340KB of library weight never enters the main bundle and only
@@ -40,7 +41,9 @@ export function NeuralNetworkBackground() {
       }}
     >
       <Suspense fallback={null}>
-        <NeuralNetworkCanvasInner pointerRef={pointerRef} />
+        <CanvasErrorBoundary fallback={null}>
+          <NeuralNetworkCanvasInner pointerRef={pointerRef} />
+        </CanvasErrorBoundary>
       </Suspense>
     </div>
   );

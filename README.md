@@ -1,32 +1,72 @@
-# React + TypeScript + Vite
+# Sudhanshu Labs
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+The portfolio of Sudhanshu Raj, an AI Systems Engineer — applied ML, computer
+vision, and full-stack engineering, shown through real production systems
+instead of a project list.
 
-Currently, two official plugins are available:
+**Live:** _deploy pending_ · **Flagship case study:** [Blind Assistant](https://github.com/Sudhanshuraj1037/Blind-AI)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Why this exists
 
-## React Compiler
+Most portfolios describe skills. This one demonstrates systems — the
+flagship section walks through a real engineering decision (a priority-
+scheduled fusion engine arbitrating seven concurrent perception models on
+CPU-only hardware), not a screenshot and a tech-stack badge list.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack
 
-## Expanding the Oxlint configuration
+React 19 · TypeScript · Vite · Tailwind CSS v4 · React Three Fiber ·
+Framer Motion
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+Every dependency in `package.json` is either in active use or reserved for
+a specific, planned Milestone 3 feature — see [`ROADMAP.md`](./ROADMAP.md)
+for which is which.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Engineering principles
+
+- **No fabricated content.** No placeholder metrics, no fake demo links, no
+  invented project names. If real data doesn't exist yet, the section stays
+  unbuilt rather than filled with plausible-sounding filler.
+- **Honest capability labeling.** Skills are marked shipped vs. actively
+  in-progress — never inflated.
+- **Every animation has a stated reason.** Prefers-reduced-motion is
+  respected throughout, including the WebGL scene.
+- **No decorative 3D.** The neural network in the hero represents a real
+  data-flow concept, not a stock Three.js scene.
+
+## Getting started
+
+```bash
+npm install
+npm run dev      # local dev server
+npm run build    # production build (tsc -b && vite build)
+npm run lint      # oxlint
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Project structure
+
+```
+src/
+├── components/
+│   ├── layout/        # Navbar, Footer, LoadingScreen, MobileNav
+│   ├── sections/       # Hero, FeaturedProject, About, Skills, Projects, Contact
+│   │   ├── architecture/   # diagram system: desktop, mobile, fullscreen modal
+│   │   └── featured-project/  # case-study subsections
+│   ├── three/          # R3F neural network scene, lazy-loaded, error-bounded
+│   └── ui/              # shared primitives (FadeIn, etc.)
+├── hooks/               # usePrefersReducedMotion, useActiveSection, etc.
+├── lib/                 # navigation data, utils
+└── styles/               # design tokens (tokens.css) — single source of truth
+                          # for color, type, spacing, motion
+```
+
+## Status
+
+Milestone 1 (foundation) and Milestone 2 (production-readiness — nav,
+responsive, accessibility, performance, error handling, SEO) complete.
+See [`ROADMAP.md`](./ROADMAP.md) for the full milestone plan and standing
+decisions, and [`CHANGELOG.md`](./CHANGELOG.md) for release history.
+
+## License
+
+MIT
