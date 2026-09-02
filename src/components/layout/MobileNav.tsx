@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { NAV_LINKS } from "@/lib/navigation";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { useModalBehavior } from "@/hooks/useModalBehavior";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -14,49 +14,8 @@ export function MobileNav({
   onClose: () => void;
   triggerRef: React.RefObject<HTMLButtonElement | null>;
 }) {
-  const panelRef = useRef<HTMLDivElement>(null);
   const reducedMotion = usePrefersReducedMotion();
-
-  // Body scroll lock + focus trap + Escape-to-close while open.
-  useEffect(() => {
-    if (!open) return;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const trigger = triggerRef.current;
-
-    const panel = panelRef.current;
-    const focusable = panel?.querySelectorAll<HTMLElement>(
-      'a[href], button:not([disabled])'
-    );
-    focusable?.[0]?.focus();
-
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        onClose();
-        return;
-      }
-      if (e.key !== "Tab" || !focusable || focusable.length === 0) return;
-
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
-
-    document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", onKeyDown);
-      trigger?.focus();
-    };
-  }, [open, onClose, triggerRef]);
+  const panelRef = useModalBehavior(open, onClose, triggerRef);
 
   return (
     <AnimatePresence>
