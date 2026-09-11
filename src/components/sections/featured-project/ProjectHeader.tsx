@@ -1,4 +1,5 @@
 import { FadeIn } from "@/components/ui/FadeIn";
+import { ProjectImageSlot } from "@/components/ui/ProjectImageSlot";
 
 export function ProjectHeader() {
   return (
@@ -26,6 +27,11 @@ export function ProjectHeader() {
           View source →
         </a>
       </div>
+
+      <ProjectImageSlot
+        alt="Blind Assistant in use"
+        className="mt-8 aspect-[16/7]"
+      />
     </FadeIn>
   );
 }

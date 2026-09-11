@@ -114,7 +114,7 @@ export function PortraitPanel({ src, alt }: { src?: string; alt?: string }) {
               strokeWidth={1}
               aria-hidden="true"
             />
-            <p className="font-mono text-[11px] text-[color:var(--color-text-tertiary)]">
+            <p className="font-mono text-[11px] text-[color:var(--color-text-secondary)]">
               Portrait — pending
             </p>
           </div>

@@ -17,7 +17,7 @@ export function PremiumCard({
   return (
     <div
       className={cn(
-        "rounded-[var(--radius-lg)] border border-[color:var(--color-border)] bg-[color:var(--color-surface)]",
+        "overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--color-border)] bg-[color:var(--color-surface)]",
         "transition-[transform,background-color,border-color] duration-300 ease-out",
         "hover:-translate-y-1 hover:border-[color:var(--color-border-strong)] hover:bg-[color:var(--color-surface-2)]",
         className

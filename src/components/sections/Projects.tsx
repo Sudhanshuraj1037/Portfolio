@@ -1,4 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn";
+import { PremiumCard } from "@/components/ui/PremiumCard";
+import { ProjectImageSlot } from "@/components/ui/ProjectImageSlot";
 
 type Project = {
   name: string;
@@ -40,24 +42,30 @@ export function Projects() {
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {PROJECTS.map((project, i) => (
             <FadeIn key={project.name} delay={i * 0.1}>
-              <div className="h-full rounded-[var(--radius-lg)] border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-6 transition-colors hover:border-[color:var(--color-border-strong)]">
-                <h3 className="text-lg font-medium text-[color:var(--color-text-primary)]">
-                  {project.name}
-                </h3>
-                <p className="mt-3 text-sm text-[color:var(--color-text-secondary)] leading-relaxed">
-                  {project.problem}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {project.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-full border border-[color:var(--color-border-strong)] px-2.5 py-0.5 font-mono text-[11px] text-[color:var(--color-text-secondary)]"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              <PremiumCard className="h-full">
+                <ProjectImageSlot
+                  alt={`${project.name} screenshot`}
+                  className="rounded-none border-0 border-b border-[color:var(--color-border)]"
+                />
+                <div className="p-6">
+                  <h3 className="text-lg font-medium text-[color:var(--color-text-primary)]">
+                    {project.name}
+                  </h3>
+                  <p className="mt-3 text-sm text-[color:var(--color-text-secondary)] leading-relaxed">
+                    {project.problem}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-full border border-[color:var(--color-border-strong)] px-2.5 py-0.5 font-mono text-[11px] text-[color:var(--color-text-secondary)]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </PremiumCard>
             </FadeIn>
           ))}
         </div>
