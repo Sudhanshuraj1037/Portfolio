@@ -1,5 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import { PortraitPanel } from "./about/PortraitPanel";
+import sudhanshuPhoto from "@/assets/sudhanshu.jpg";
 
 const STAGES = [
   {
@@ -48,7 +49,10 @@ export function About() {
           </FadeIn>
 
           <FadeIn delay={0.1} className="w-full md:w-64">
-            <PortraitPanel />
+            <PortraitPanel
+              src={sudhanshuPhoto}
+              alt="Sudhanshu Raj, AI Systems Engineer"
+            />
           </FadeIn>
         </div>
 
