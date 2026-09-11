@@ -1,5 +1,6 @@
+import { PROFILE_LINKS } from "@/lib/profile";
+
 const BUILT_WITH = ["React", "TypeScript", "Tailwind CSS", "React Three Fiber"];
-const GITHUB_URL = "https://github.com/Sudhanshuraj1037";
 
 export function Footer() {
   return (
@@ -23,7 +24,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-2 sm:items-end">
           <a
-            href={GITHUB_URL}
+            href={PROFILE_LINKS.github}
             target="_blank"
             rel="noreferrer"
             className="font-mono text-xs text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-signal-text)] transition-colors"

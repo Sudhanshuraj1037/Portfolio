@@ -1,8 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn";
-
-// TODO(sudhanshu): replace with your real email before deploying.
-const EMAIL = "your.email@example.com";
-const GITHUB_URL = "https://github.com/Sudhanshuraj1037";
+import { PROFILE_LINKS } from "@/lib/profile";
+import { ConnectLinks } from "./contact/ConnectLinks";
 
 export function Contact() {
   return (
@@ -25,13 +23,13 @@ export function Contact() {
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
-              href={`mailto:${EMAIL}`}
+              href={`mailto:${PROFILE_LINKS.email}`}
               className="inline-flex items-center rounded-[var(--radius-sm)] bg-[color:var(--color-text-primary)] px-5 py-2.5 text-sm font-medium text-[color:var(--color-bg)] transition-opacity hover:opacity-90"
             >
-              {EMAIL}
+              {PROFILE_LINKS.email}
             </a>
             <a
-              href={GITHUB_URL}
+              href={PROFILE_LINKS.github}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center rounded-[var(--radius-sm)] border border-[color:var(--color-border-strong)] px-5 py-2.5 text-sm font-medium text-[color:var(--color-text-primary)] transition-colors hover:border-[color:var(--color-signal)]"
@@ -39,6 +37,10 @@ export function Contact() {
               GitHub →
             </a>
           </div>
+        </FadeIn>
+
+        <FadeIn delay={0.1}>
+          <ConnectLinks />
         </FadeIn>
       </div>
     </section>

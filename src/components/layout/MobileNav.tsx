@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { NAV_LINKS } from "@/lib/navigation";
+import { PROFILE_LINKS } from "@/lib/profile";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { useModalBehavior } from "@/hooks/useModalBehavior";
 
@@ -78,7 +79,7 @@ export function MobileNav({
               Resume — coming soon
             </span>
             <a
-              href="https://github.com/Sudhanshuraj1037"
+              href={PROFILE_LINKS.github}
               target="_blank"
               rel="noreferrer"
               onClick={onClose}
