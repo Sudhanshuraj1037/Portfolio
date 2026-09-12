@@ -1,3 +1,5 @@
+import type { ArchitectureNodeId } from "./architectureData";
+
 export const SIGNAL = "var(--color-signal)";
 export const BORDER = "var(--color-border-strong)";
 export const TEXT_PRIMARY = "var(--color-text-primary)";
@@ -11,6 +13,8 @@ export type Connection = {
   to: Point;
   duration: number;
   delay: number;
+  fromNode?: ArchitectureNodeId;
+  toNode?: ArchitectureNodeId;
 };
 
 type NodeProps = {
@@ -23,6 +27,9 @@ type NodeProps = {
   highlight?: boolean;
   fontSize?: number;
   subtitleFontSize?: number;
+  selected?: boolean;
+  dimmed?: boolean;
+  onSelect?: () => void;
 };
 
 export function Node({
@@ -35,9 +42,20 @@ export function Node({
   highlight,
   fontSize = 13,
   subtitleFontSize = 10.5,
+  selected,
+  dimmed,
+  onSelect,
 }: NodeProps) {
+  const isEmphasized = highlight || selected;
   return (
-    <g>
+    <g
+      onClick={onSelect}
+      style={{
+        cursor: onSelect ? "pointer" : undefined,
+        opacity: dimmed ? 0.4 : 1,
+        transition: "opacity 250ms ease-out",
+      }}
+    >
       <rect
         x={x}
         y={y}
@@ -45,8 +63,9 @@ export function Node({
         height={h}
         rx={10}
         fill={SURFACE}
-        stroke={highlight ? SIGNAL : BORDER}
-        strokeWidth={highlight ? 1.5 : 1}
+        stroke={isEmphasized ? SIGNAL : BORDER}
+        strokeWidth={selected ? 2 : isEmphasized ? 1.5 : 1}
+        style={{ transition: "stroke 250ms ease-out, stroke-width 250ms ease-out" }}
       />
       <text
         x={x + w / 2}
@@ -54,7 +73,7 @@ export function Node({
         textAnchor="middle"
         fontFamily="var(--font-mono)"
         fontSize={fontSize}
-        fill={highlight ? SIGNAL : TEXT_PRIMARY}
+        fill={isEmphasized ? SIGNAL : TEXT_PRIMARY}
       >
         {title}
       </text>
@@ -143,12 +162,20 @@ export function ArrowheadMarker() {
 export function ConnectionGroup({
   connection,
   reducedMotion,
+  selectedNode,
 }: {
   connection: Connection;
   reducedMotion: boolean;
+  selectedNode?: ArchitectureNodeId | null;
 }) {
+  const dimmed = Boolean(
+    selectedNode &&
+      connection.fromNode !== selectedNode &&
+      connection.toNode !== selectedNode
+  );
+
   return (
-    <g>
+    <g style={{ opacity: dimmed ? 0.35 : 1, transition: "opacity 250ms ease-out" }}>
       <Arrow from={connection.from} to={connection.to} />
       {!reducedMotion && (
         <Pulse
