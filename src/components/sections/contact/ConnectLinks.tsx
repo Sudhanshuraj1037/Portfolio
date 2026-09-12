@@ -1,8 +1,8 @@
 import { Download } from "lucide-react";
 import { PROFILE_LINKS, CV_FILES } from "@/lib/profile";
 
-// Flip to true once real files exist at the paths in CV_FILES (under public/).
-const CV_READY = false;
+// Real files now exist at public/cv/ (Phase C Step 0 Final Correction).
+const CV_READY = true;
 
 type ConnectItem = {
   label: string;

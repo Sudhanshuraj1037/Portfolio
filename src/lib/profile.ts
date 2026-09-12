@@ -3,30 +3,22 @@
  * for every social/professional link, the email address, and CV file
  * paths, used across Contact, Footer, and the Connect list.
  *
- * Verified real: github.
- * Placeholder, not yet real: email (see TODO — same placeholder that
- * already existed in Contact.tsx before this file, just centralized).
- * Not yet available at all: everything else below — intentionally left
- * empty rather than invented. Paste in the real URL and it renders as
- * a live link with zero other code changes.
+ * All values below are real and verified as of Phase C Step 0 Final
+ * Correction. Instagram deliberately uses the clean canonical profile
+ * URL, not the tracking-parameter version (?stkn=...) it was provided
+ * with.
  */
 
 export const PROFILE_LINKS = {
   github: "https://github.com/Sudhanshuraj1037",
-  // TODO(sudhanshu): replace with your real email before deploying.
-  email: "your.email@example.com",
-  // TODO(sudhanshu): none of these are verified yet — provide the real
-  // profile URL for each.
-  linkedin: "",
-  geeksforgeeks: "",
-  kaggle: "",
-  instagram: "",
-  leetcode: "",
+  email: "sudhanshuraj1037@gmail.com",
+  linkedin: "https://www.linkedin.com/in/sudhanshuraj1037",
+  geeksforgeeks: "https://www.geeksforgeeks.org/profile/sudhanshuraj1037",
+  kaggle: "https://www.kaggle.com/sudhanshuraj1037",
+  instagram: "https://www.instagram.com/s_raj78___",
+  leetcode: "https://leetcode.com/u/sudhanshuraj1037/",
 };
 
-// TODO(sudhanshu): place the real files at these exact paths under
-// public/ (i.e. public/cv/Sudhanshu_Raj_CV.pdf) and flip CV_READY to
-// true in ConnectLinks.tsx once they exist.
 export const CV_FILES = {
   pdf: "/cv/Sudhanshu_Raj_CV.pdf",
   docx: "/cv/Sudhanshu_Raj_CV.docx",
