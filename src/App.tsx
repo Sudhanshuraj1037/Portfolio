@@ -7,6 +7,7 @@ import { FeaturedProject } from "@/components/sections/FeaturedProject";
 import { About } from "@/components/sections/About";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
+import { GitHubDashboard } from "@/components/sections/github/GitHubDashboard";
 import { Contact } from "@/components/sections/Contact";
 import { useLoadingGate } from "@/hooks/useLoadingGate";
 
@@ -32,6 +33,7 @@ function App() {
             <About />
             <Projects />
             <Skills />
+            <GitHubDashboard />
             <Contact />
           </main>
           <Footer />
