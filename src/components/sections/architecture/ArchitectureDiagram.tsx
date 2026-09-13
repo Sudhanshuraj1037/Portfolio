@@ -53,6 +53,7 @@ export function ArchitectureDiagram({ selectedNode = null, onSelectNode }: Props
       xmlns="http://www.w3.org/2000/svg"
       className="w-full h-auto"
       role="img"
+      focusable="false"
       aria-label="System architecture: camera feed and microphone inputs flow through seven perception modules and a voice command parser into a fusion engine and Groq vision-language model, which output through text-to-speech. Use the controls below the diagram to explore each component."
     >
       <defs>
@@ -66,6 +67,7 @@ export function ArchitectureDiagram({ selectedNode = null, onSelectNode }: Props
       {/* Perception cluster — one selectable subsystem, not 7 separate nodes */}
       <g
         onClick={onSelectNode ? () => onSelectNode("perception") : undefined}
+        aria-hidden="true"
         style={{
           cursor: onSelectNode ? "pointer" : undefined,
           opacity: perceptionDimmed ? 0.4 : 1,

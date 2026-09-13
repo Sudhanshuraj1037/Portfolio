@@ -50,6 +50,7 @@ export function Node({
   return (
     <g
       onClick={onSelect}
+      aria-hidden="true"
       style={{
         cursor: onSelect ? "pointer" : undefined,
         opacity: dimmed ? 0.4 : 1,

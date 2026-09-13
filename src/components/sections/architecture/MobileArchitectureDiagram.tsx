@@ -40,6 +40,7 @@ export function MobileArchitectureDiagram({ selectedNode = null, onSelectNode }:
       xmlns="http://www.w3.org/2000/svg"
       className="w-full h-auto"
       role="img"
+      focusable="false"
       aria-label="Simplified system architecture: camera and microphone feed seven perception models, which pass into a fusion engine, which outputs through Groq vision-language Q&A and text-to-speech. Use the controls below to explore each component, or tap below for the full diagram."
     >
       <defs>
