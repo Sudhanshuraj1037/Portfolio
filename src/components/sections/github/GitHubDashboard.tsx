@@ -2,7 +2,6 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { PROFILE_LINKS } from "@/lib/profile";
 import {
   GITHUB_REPOSITORIES,
-  GITHUB_PROFILE_STATS,
   GITHUB_VERIFIED_DATE,
 } from "./githubData";
 import { GitHubRepositoryCard } from "./GitHubRepositoryCard";
@@ -27,8 +26,7 @@ export function GitHubDashboard() {
 
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
             <p className="font-mono text-xs text-[color:var(--color-text-secondary)]">
-              {GITHUB_PROFILE_STATS.publicRepositories} public repositories ·{" "}
-              {GITHUB_PROFILE_STATS.starsGiven} stars given
+              Selected repositories
             </p>
             <a
               href={PROFILE_LINKS.github}

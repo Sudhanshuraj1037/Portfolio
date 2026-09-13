@@ -7,7 +7,7 @@ export function GitHubLanguageSignal() {
   return (
     <div>
       <p className="font-mono text-xs text-[color:var(--color-text-secondary)]">
-        Primary language across the repositories shown above
+        Primary languages across selected repositories
       </p>
       <div className="mt-3 space-y-2.5">
         {signal.map(({ language, count }) => (

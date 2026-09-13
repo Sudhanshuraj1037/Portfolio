@@ -34,11 +34,6 @@ export type GitHubRepository = {
 
 export const GITHUB_VERIFIED_DATE = "2026-09-13";
 
-export const GITHUB_PROFILE_STATS = {
-  publicRepositories: 11,
-  starsGiven: 4,
-};
-
 export const GITHUB_REPOSITORIES: GitHubRepository[] = [
   {
     name: "Blind-AI",
