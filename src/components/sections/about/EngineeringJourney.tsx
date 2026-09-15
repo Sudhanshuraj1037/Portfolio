@@ -9,7 +9,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 // Tags are extracted from facts already stated — either in this stage's
 // own detail text, or cross-referenced from the real tech stacks already
 // listed in FeaturedProject (Blind Assistant) and Projects.tsx (ExamPrep
-// AI, SaaS Dashboard Clone). Nothing here is invented for this component.
+// AI, AI Resume Builder). Nothing here is invented for this component.
 const STAGES = [
   {
     label: "Foundations",
@@ -33,8 +33,8 @@ const STAGES = [
   {
     label: "Shipping applied AI",
     detail:
-      "Moved from research-flavored ML into shipped, full-stack products — an LLM-integrated exam-prep platform and a production-style SaaS dashboard — where the constraints are users and deadlines, not benchmarks.",
-    tags: ["React", "Vite", "Anthropic API", "Admin panel"],
+      "Moved from research-flavored ML into shipped, full-stack products — an LLM-integrated exam-prep platform and an AI-powered resume builder — where the constraints are users and deadlines, not benchmarks.",
+    tags: ["Anthropic API", "Python", "Streamlit", "Generative AI"],
     link: { href: "#projects", label: "View projects" },
   },
   {

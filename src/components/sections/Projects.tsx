@@ -1,11 +1,16 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import { PremiumCard } from "@/components/ui/PremiumCard";
 import { ProjectImageSlot } from "@/components/ui/ProjectImageSlot";
+import govprepAiScreenshot from "@/assets/govprep-ai-screenshot.png";
+import aiResumeBuilderScreenshot from "@/assets/ai-resume-builder-screenshot.png";
 
 type Project = {
   name: string;
   problem: string;
   stack: string[];
+  screenshot?: string;
+  githubUrl?: string;
+  demoUrl?: string;
 };
 
 const PROJECTS: Project[] = [
@@ -14,12 +19,18 @@ const PROJECTS: Project[] = [
     problem:
       "Indian government competitive exam prep (Railway NTPC, SSC CGL, Banking PO, UPSC, State PSC) is fragmented across PDFs and coaching-class notes. Built a single-file web app with a mock-test engine (negative marking included), LLM-generated questions, and an analytics dashboard tracking accuracy by topic.",
     stack: ["HTML/CSS/JS", "Anthropic API", "Auth", "Admin panel"],
+    screenshot: govprepAiScreenshot,
+    githubUrl: "https://github.com/Sudhanshuraj1037/GovPrep-AI",
+    demoUrl: "https://govprep-ai.netlify.app/",
   },
   {
-    name: "SaaS Dashboard Clone",
+    name: "AI Resume Builder",
     problem:
-      "Rebuilt a licensing/referrals/support-ticket SaaS dashboard end-to-end on React + Vite, replacing Firebase and Razorpay with a localStorage-based mock backend — zero external dependencies, same product surface: auth, licensing, referrals, support tickets, admin panel.",
-    stack: ["React", "Vite", "Mock backend", "Admin panel"],
+      "Built an AI-powered resume generation platform that helps users create professional, job-ready resumes through an interactive Streamlit interface. The application combines structured resume inputs with AI-assisted content generation and provides a streamlined workflow for creating and refining resumes.",
+    stack: ["Python", "Streamlit", "Generative AI"],
+    screenshot: aiResumeBuilderScreenshot,
+    githubUrl: "https://github.com/Sudhanshuraj1037/ai-resume-builder",
+    demoUrl: "https://ai-resume-builder-4hbg7gvcuqrmddtt79zskj.streamlit.app/",
   },
 ];
 
@@ -44,6 +55,7 @@ export function Projects() {
             <FadeIn key={project.name} delay={i * 0.1}>
               <PremiumCard className="h-full">
                 <ProjectImageSlot
+                  src={project.screenshot}
                   alt={`${project.name} screenshot`}
                   className="rounded-none border-0 border-b border-[color:var(--color-border)]"
                 />
@@ -64,6 +76,30 @@ export function Projects() {
                       </span>
                     ))}
                   </div>
+                  {(project.githubUrl || project.demoUrl) && (
+                    <div className="mt-4 flex flex-wrap gap-4">
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-xs text-[color:var(--color-signal-text)] hover:underline"
+                        >
+                          GitHub →
+                        </a>
+                      )}
+                      {project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-xs text-[color:var(--color-signal-text)] hover:underline"
+                        >
+                          Live Demo →
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
               </PremiumCard>
             </FadeIn>

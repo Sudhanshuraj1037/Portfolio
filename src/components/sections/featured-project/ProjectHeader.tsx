@@ -1,5 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import { ProjectImageSlot } from "@/components/ui/ProjectImageSlot";
+import blindAssistantScreenshot from "@/assets/blind-assistant-screenshot.png";
 
 export function ProjectHeader() {
   return (
@@ -29,7 +30,8 @@ export function ProjectHeader() {
       </div>
 
       <ProjectImageSlot
-        alt="Blind Assistant in use"
+        src={blindAssistantScreenshot}
+        alt="Blind Assistant live view showing detected objects with confidence scores and spoken output"
         className="mt-8 aspect-[16/7]"
       />
     </FadeIn>

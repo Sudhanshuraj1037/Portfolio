@@ -22,7 +22,7 @@ const PILLARS = [
     icon: Code2,
     title: "Full-Stack Engineering",
     technologies: ["React", "TypeScript", "REST APIs", "Deployment"],
-    project: "SaaS Dashboard · ExamPrep AI",
+    project: "ExamPrep AI",
   },
 ];
 
